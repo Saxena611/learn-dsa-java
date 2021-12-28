@@ -48,7 +48,6 @@ public class SingleLinkedList {
         printLinkedList(newHead);
         Node endHead = insertAtEnd(newHead,50);
         printLinkedList(endHead);
-        printLinkedList(endHead);
     }
 
 }
