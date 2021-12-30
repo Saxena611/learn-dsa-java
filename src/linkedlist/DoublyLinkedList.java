@@ -18,19 +18,29 @@ package linkedlist;
 
 public class DoublyLinkedList {
 
-    static class Node{
+    static class Node {
         int data;
         Node next;
         Node prev;
-        Node(int x){
+
+        Node(int x) {
             this.data = x;
             this.next = null;
             this.prev = null;
         }
     }
 
+    public static Node insertAtBeginning(Node head, int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        if (head != null) {
+            head.prev = newNode;
+        }
+        return newNode;
+    }
 
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         Node head = new Node(10);
         Node n1 = new Node(20);
         Node n2 = new Node(30);
@@ -40,5 +50,7 @@ public class DoublyLinkedList {
         n1.prev = head;
         n1.next = n2;
         n2.prev = n1;
+
+        head = insertAtBeginning(head, 40);
     }
 }
