@@ -39,6 +39,28 @@ public class DoublyLinkedList {
         return newNode;
     }
 
+    public static Node insertAtEnd(Node head,int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            return newNode;
+        }
+        Node curr = head;
+        while(curr.next != null){
+            curr = curr.next;
+        }
+        curr.next = newNode;
+        newNode.prev = curr;
+        return head;
+    }
+
+    public static void printList(Node head){
+        Node curr = head;
+        while(curr != null){
+            System.out.print(curr.data + "->");
+            curr = curr.next;
+        }
+        System.out.println("");
+    }
 
     public static void main(String[] args) {
         Node head = new Node(10);
@@ -52,5 +74,7 @@ public class DoublyLinkedList {
         n2.prev = n1;
 
         head = insertAtBeginning(head, 40);
+        head = insertAtEnd(head , 50);
+        printList(head);
     }
 }
