@@ -100,6 +100,19 @@ public class SingleLinkedList {
         return -1;
     }
 
+    public static Node reverse(Node head){
+        Node curr = head;
+        Node prev = null;
+
+        while(curr != null){
+            Node temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+    }
+
     public static void main(String[] args) {
         Node head = new Node(10);
         Node temp1 = new Node(20);
@@ -109,13 +122,15 @@ public class SingleLinkedList {
         temp1.next = temp2;
         temp2.next = temp3;
         Node newHead = insertAtBeginning(head,40);
-        //printLinkedList(newHead);
+        printLinkedList(newHead);
         Node endHead = insertAtEnd(newHead,60);
-        //printLinkedList(endHead);
+        printLinkedList(endHead);
         head = delHead(head);
-        //printLinkedList(head);
+        printLinkedList(head);
         head = delTail(head);
         printLinkedList(head);
+        Node reverseHead = reverse(head);
+        printLinkedList(reverseHead);
     }
 
 }
