@@ -4,7 +4,7 @@ public class MaxLengthEvenOddSubArray {
 
     /*
     * Based out of Kaden's Algorithm
-    * 1. Either start a new sub-array
+    * 1. Either extend the  existing sub-array
     *              OR
     * 2. Start a new one
     * */

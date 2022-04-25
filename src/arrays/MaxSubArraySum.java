@@ -25,11 +25,11 @@ public class MaxSubArraySum {
         int res = arr[0];
         int maxEnding = arr[0];
 
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; i++) {
             maxEnding = Math.max(maxEnding + arr[i], arr[i]);
             res = Math.max(res, maxEnding);
-
         }
+
         System.out.println(res);
 
 

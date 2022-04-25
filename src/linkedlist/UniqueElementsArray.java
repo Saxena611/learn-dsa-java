@@ -30,10 +30,6 @@ public class UniqueElementsArray {
         return output;
     }
 
-    public static int sumUnique(String s){
-        return 1;
-    }
-
     public static void main(String[] args) {
         String s = "1,1,2,a,3";
         System.out.println(unique(s));
