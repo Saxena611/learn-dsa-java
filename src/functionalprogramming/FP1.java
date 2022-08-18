@@ -21,6 +21,9 @@ public class FP1 {
         // given the below list of numbers print cube of odd numbers
         List<Integer> liOfInt = List.of(1,2,3,4,5,6,7,8,9,10);
         liOfInt.stream().filter(num -> num%2 != 0).map(num -> num * 3).forEach(System.out::println);
+
+        System.out.println("change");
+        liOfInt.stream().filter(num -> num%2 != 0);
     }
 
     public static void printAllNumbersInList(List<Integer> numbers){

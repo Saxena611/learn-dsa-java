@@ -18,7 +18,7 @@ public class BinarySearch {
         int start = 0;
         int end = n - 1;
 
-        while(start <= end){
+        while(start <= end) {
             int mid = (start + end)/2 ;
             if(arr[mid] == x){
                 return mid;
@@ -30,7 +30,6 @@ public class BinarySearch {
                 // element will be in the later part of the array
                 start = mid + 1;
             }
-
         }
         return -1;
     }

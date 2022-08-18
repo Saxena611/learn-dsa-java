@@ -8,7 +8,7 @@ public class EquilibriumPoint {
     * Equlibrium point is the position in the array
     * where right sum of array is equal to the left sum of array.
     *
-    * For an array {3 , 4 , 8 , -9, 20 , 6}
+    * For an array{3 , 4  , 8 , -9, 20 , 6}
     * index 4 will be considered as equilibrium point as sum of
     * left {3,4,8,-9} is 6 and sum of right i.e {6} is equal.
     * */

@@ -20,7 +20,7 @@ public class WindowSlidingTechnique {
             curr_sum += arr[i];
         }
 
-        for(int j = k ; j < n ; j++){
+        for(int j = k ; j < n ; j++) {
            curr_sum += (arr[j] - arr[j-k]); // adding the next element and substracting the first element of the window
            max_sum = Math.max(max_sum,curr_sum);
         }
