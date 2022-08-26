@@ -29,6 +29,31 @@ public class WindowSlidingTechnique {
     }
 
     /*
+     * Given an array of integers and a number k . Find the maximum sum of k consecutive elements.
+     * k - size of window
+     * */
+    static int maxSumSecondApproach(int[] arr,int n,int k){
+        int curr_sum = 0;
+        int max_sum = Integer.MIN_VALUE;
+
+        int i = 0;
+        int j = 0;
+
+        while(j < n){
+            curr_sum += arr[j];
+            if((j - i + 1) < k){
+                j++;
+            }else if((j - i + 1) == k){
+                max_sum = Math.max(curr_sum, max_sum);
+                curr_sum -= arr[i];
+                i++;
+                j++;
+            }
+        }
+        return max_sum;
+    }
+
+    /*
     * Find sub-array with the given sum.
     *
     * */
@@ -58,6 +83,8 @@ public class WindowSlidingTechnique {
         // Max sum of k consecutive elements
         int arr_1[] = {1, 8, 30, -5, 20, 7}, n1 = 6, k1 = 3;
         System.out.println(maxSum(arr_1, n1, k1));
+        System.out.println("Output of second approach.");
+        System.out.println(maxSumSecondApproach(arr_1, n1, k1));
 
         // Find sub-array with the given sum.
         int arr_2[] = {15, 2, 4, 8, 9, 5, 10, 23};
