@@ -32,6 +32,7 @@ public class UniqueElementsArray {
 
     public static void main(String[] args) {
         String s = "1,1,2,a,3";
+        String s2 = "1,1,1,v,c,d,;,3,5,6,3,3";
         System.out.println(unique(s));
     }
 }

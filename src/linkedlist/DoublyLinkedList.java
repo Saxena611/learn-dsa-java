@@ -39,6 +39,40 @@ public class DoublyLinkedList {
         return newNode;
     }
 
+    public static Node insertAtPos(Node head, int data, int pos) {
+        Node nNode = new Node(data);
+        if (head == null) {
+            return head;
+        }
+
+        if (head.next == null) {
+            head.next = nNode;
+            nNode.prev = head;
+            return head;
+        }
+
+        Node curr = head;
+        int currPos = 0; // considers 0-based indexing
+        while (currPos < pos && curr.next != null) {
+            currPos += 1;
+            curr = curr.next;
+        }
+
+        // If element needs to be inserted at the end of the doubly linked list
+        if(curr.next == null){
+            curr.next = nNode;
+            nNode.prev = curr;
+            return head;
+        }
+
+        nNode.next = curr.next;
+        curr.next.prev = nNode;
+        curr.next = nNode;
+        nNode.prev = curr;
+        return head;
+
+    }
+
     public static Node insertAtEnd(Node head,int data){
         Node newNode = new Node(data);
         if(head == null){
@@ -76,8 +110,9 @@ public class DoublyLinkedList {
         n2.next = n3;
         n3.prev = n2;
 
-        head = insertAtBeginning(head, 40);
-        head = insertAtEnd(head , 50);
+        //head = insertAtBeginning(head, 40);
+        //head = insertAtEnd(head , 50);
+        head = insertAtPos(head, 25, 2);
         printList(head);
     }
 }

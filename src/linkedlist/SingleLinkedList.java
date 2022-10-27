@@ -1,6 +1,9 @@
 package linkedlist;
 
+import java.util.List;
+
 public class SingleLinkedList {
+
 
     static class Node{
         int data;
@@ -16,6 +19,16 @@ public class SingleLinkedList {
             System.out.print(curr.data + "-->");
             curr = curr.next;
         }
+    }
+
+    public static int countNumberOfElementsInALinkedList(Node head) {
+        Node curr = head;
+        int count = 0;
+        while (curr != null) {
+            count += 1;
+            curr = curr.next;
+        }
+        return count;
     }
 
     public static Node insertAtBeginning(Node head,int x){
@@ -63,7 +76,7 @@ public class SingleLinkedList {
 
     public static Node insertAtPosition(Node head,int pos,int data){
         Node temp = new Node(data);
-        if(pos == 1){
+        if(pos == 1) {
             temp.next = head;
             return temp;
         }
@@ -113,6 +126,41 @@ public class SingleLinkedList {
         return prev;
     }
 
+    public static Node reverseLinkedListUsingRecursion(Node head) {
+
+        // base case
+        if (head.next == null) {
+            return head;
+        }
+        Node nHead = reverseLinkedListUsingRecursion(head.next);
+        Node curr = head.next;
+
+        curr.next = head;
+        head.next = null;
+        return nHead;
+
+    }
+
+    public static Node reverseLinkedListSecondApproach(Node curr, Node prev) {
+        if (curr == null) {
+            return prev;
+        }
+        
+        Node nxt = curr.next;
+        curr.next = prev;
+        return reverseLinkedListSecondApproach(nxt, curr);
+    }
+
+    public static Node convertListToLinkedList(List<Integer> aList) {
+        Node head = new Node(aList.get(0));
+
+        for (int i = 1; i < aList.size() ; i++) {
+            insertAtEnd(head, aList.get(i));
+        }
+
+        return head;
+    }
+
     public static void main(String[] args) {
         Node head = new Node(10);
         Node temp1 = new Node(20);
@@ -121,16 +169,22 @@ public class SingleLinkedList {
         head.next = temp1;
         temp1.next = temp2;
         temp2.next = temp3;
-        Node newHead = insertAtBeginning(head,40);
-        printLinkedList(newHead);
-        Node endHead = insertAtEnd(newHead,60);
-        printLinkedList(endHead);
-        head = delHead(head);
-        printLinkedList(head);
-        head = delTail(head);
-        printLinkedList(head);
-        Node reverseHead = reverse(head);
-        printLinkedList(reverseHead);
+//        Node newHead = insertAtBeginning(head,40);
+//        printLinkedList(newHead);
+//        Node endHead = insertAtEnd(newHead,60);
+//        printLinkedList(endHead);
+//        head = delHead(head);
+//        printLinkedList(head);
+//        head = delTail(head);
+//        printLinkedList(head);
+        // Node reverseHead = reverse(head);
+        // printLinkedList(reverseHead);
+
+//        Node revHead = reverseLinkedListUsingRecursion(head);
+//        printLinkedList(revHead);
+
+        Node rev2head = reverseLinkedListSecondApproach(head, null);
+        printLinkedList(rev2head);
     }
 
 }
