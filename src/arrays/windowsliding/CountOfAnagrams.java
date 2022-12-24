@@ -32,9 +32,6 @@ public class CountOfAnagrams {
             hmap.put(word.charAt(k), hmap.getOrDefault(word.charAt(k), 0) + 1);
         }
         int count = hmap.size();
-
-
-
         while (j < input.length()) {
             if (hmap.containsKey(input.charAt(j))) {
                 int value = hmap.get(input.charAt(j));

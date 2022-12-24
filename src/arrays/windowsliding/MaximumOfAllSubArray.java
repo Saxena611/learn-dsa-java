@@ -6,11 +6,11 @@ public class MaximumOfAllSubArray {
 
     public static void main(String[] args) {
 
-        //int[] arr =  {1, 3, -1, -3, 5, 3, 6, 7};
-        //int k = 3;
+        int[] arr =  {1, 3, -1, -3, 5, 3, 6, 7};
+        int k = 3;
 
-        int[] arr = {10, 9 , 8 , 7 , 6 , 5 , 4 ,3 ,2 , 1};
-        int k = 2;
+//        int[] arr = {10, 9 , 8 , 7 , 6 , 5 , 4 ,3 ,2 , 1};
+//        int k = 2;
 
         int[] output = slidingMaximum(arr, k);
         System.out.println(Arrays.toString(output));
@@ -77,7 +77,7 @@ public class MaximumOfAllSubArray {
         int i = 0;
         int j = 0;
 
-        while(j < nums.length){
+        while(j < nums.length) {
             // calculation
             if(q.size() == 0){
                 q.add(nums[j]);

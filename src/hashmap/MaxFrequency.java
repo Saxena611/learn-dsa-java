@@ -23,6 +23,8 @@ public class MaxFrequency {
             }
         }
 
+
+
         int max = 0;
         for (Integer key : hmap.keySet()) {
             //System.out.print(key + ":" + hmap.get(key));

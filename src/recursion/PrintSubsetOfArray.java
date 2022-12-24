@@ -10,7 +10,7 @@ public class PrintSubsetOfArray {
 
     public static void main(String[] args) {
 
-        List<Integer> arr = new ArrayList<>(Arrays.asList(1,2,3));
+        List<Integer> arr = new ArrayList<>(Arrays.asList(2,1,2));
         PrintSubsetOfArray printSubsetOfArray = new PrintSubsetOfArray();
         printSubsetOfArray.external = new ArrayList<>();
         printSubsetOfArray.printSubsetOfArray(arr,new ArrayList<>());

@@ -9,7 +9,6 @@ public class UniqueElementsArray {
     public static int unique(String s) {
         int output = 0;
         String[] arr = s.split(",");
-
         HashMap<Integer, Integer> hmap = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
             int element;

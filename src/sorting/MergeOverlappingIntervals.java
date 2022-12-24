@@ -1,9 +1,6 @@
 package sorting;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class MergeOverlappingIntervals {
 
@@ -12,6 +9,7 @@ public class MergeOverlappingIntervals {
         Interval arr[] = { new Interval(5,10),new Interval(3,15),new Interval(18,30),
                 new Interval(2,7) };
         mergeIntervals(arr);
+        
 
 //        List<Interval> intervalArrayList = Arrays.asList(arr);
 
