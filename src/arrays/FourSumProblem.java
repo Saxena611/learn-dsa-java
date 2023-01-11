@@ -48,21 +48,20 @@ public class FourSumProblem {
                     if (twoSum > nTarget) {
                         hi--;
                     } else if (twoSum < nTarget) {
-                        low--;
+                        low++;
                     } else {
                         List<Integer> list = Arrays.asList(arr[i], arr[j], arr[low], arr[hi]);
                         res.add(list);
 
-                        while (low < hi && arr[low] == arr[low + 1]) low++;
-                        while (low < hi && arr[hi] == arr[hi - 1]) hi--;
-
+                        while (low < hi && arr[low] == list.get(2)) low++;
+                        while (low < hi && arr[hi] == list.get(3)) hi--;
                     }
                 }
-                while (j + 1 < n && arr[j] == arr[j + 1]) j++;
+                while (j + 1 < n && arr[j] == arr[j + 1]) ++j;
             }
             // Since the array is sorted.
             // duplicate elements can be removed from being considered as element that contribute to generate result.
-            while (i + 1 < n && arr[i] == arr[i + 1]) i++;
+            while (i + 1 < n && arr[i] == arr[i + 1]) ++i;
         }
 
         return res;
