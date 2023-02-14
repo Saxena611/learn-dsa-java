@@ -23,7 +23,7 @@ public class SortAnArrayUsingRecursion {
         insertInArray(temp);
     }
 
-    public void insertInArray(int temp){
+    public void insertInArray(int temp) {
         // Base condition
         if(arrayList.size() == 0 || arrayList.get(arrayList.size() - 1) <= temp){
             arrayList.add(temp);

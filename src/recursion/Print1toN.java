@@ -22,7 +22,7 @@ public class Print1toN {
 
     private static void print1toN(int i) {
         // Base condition
-        if(i == 0){
+        if(i == 0) {
             return;
         }
 

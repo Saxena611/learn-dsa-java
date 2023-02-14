@@ -12,6 +12,11 @@ public class LongestKCharacterSubstring {
     *  Output: 7
     *  Explanation: "cbebebe" is the longest
     *  substring with K distinct characters.
+    *
+    *
+    * Similar problems,
+    * Pick toys,
+    * Fruit baskets - https://practice.geeksforgeeks.org/problems/fruit-into-baskets-1663137462/1
     * */
 
 
