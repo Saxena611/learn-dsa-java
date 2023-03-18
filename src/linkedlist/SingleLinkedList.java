@@ -5,17 +5,19 @@ import java.util.List;
 public class SingleLinkedList {
 
 
-    static class Node{
+    static class Node {
         int data;
         Node next;
-        Node(int x){
+
+        Node(int x) {
             data = x;
             next = null;
         }
     }
-    public static void printLinkedList(Node head){
+
+    public static void printLinkedList(Node head) {
         Node curr = head;
-        while(curr != null){
+        while (curr != null) {
             System.out.print(curr.data + "-->");
             curr = curr.next;
         }
@@ -31,18 +33,18 @@ public class SingleLinkedList {
         return count;
     }
 
-    public static Node insertAtBeginning(Node head,int x){
+    public static Node insertAtBeginning(Node head, int x) {
         Node temp = new Node(x);
         temp.next = head;
         return temp;
     }
 
-    public static Node insertAtEnd(Node head,int x){
+    public static Node insertAtEnd(Node head, int x) {
         Node last = new Node(x);
         Node curr = head;
-        while(curr != null){
+        while (curr != null) {
             //System.out.println(curr.data);
-            if(curr.next == null){
+            if (curr.next == null) {
                 break;
             }
             curr = curr.next;
@@ -51,22 +53,22 @@ public class SingleLinkedList {
         return head;
     }
 
-    public static Node delHead(Node head){
-        if(head == null){
+    public static Node delHead(Node head) {
+        if (head == null) {
             return null;
         }
         return head.next;
     }
 
-    public static Node delTail(Node head){
-        if(head == null){
+    public static Node delTail(Node head) {
+        if (head == null) {
             return null;
         }
-        if(head.next == null){
+        if (head.next == null) {
             return null;
         }
         Node curr = head;
-        while(curr.next.next != null){
+        while (curr.next.next != null) {
             curr = curr.next;
         }
         curr.next = null;
@@ -74,17 +76,17 @@ public class SingleLinkedList {
 
     }
 
-    public static Node insertAtPosition(Node head,int pos,int data){
+    public static Node insertAtPosition(Node head, int pos, int data) {
         Node temp = new Node(data);
-        if(pos == 1) {
+        if (pos == 1) {
             temp.next = head;
             return temp;
         }
         Node curr = head;
-        for(int i = 1; i <= pos - 2 && curr != null ; i++){
+        for (int i = 1; i <= pos - 2 && curr != null; i++) {
             curr = curr.next;
         }
-        if(curr==null){
+        if (curr == null) {
             // boundary condition handling
             // for position exceeding linked list length
             return head;
@@ -92,20 +94,20 @@ public class SingleLinkedList {
         temp.next = curr.next; // linking the later part
         curr.next = temp; // linking the prior part
         /*
-        * It is necessary to link the later part first
-        * as if you will link the prior part first then you will lose
-        * the track of the latter part of the linked list.
-        * */
+         * It is necessary to link the later part first
+         * as if you will link the prior part first then you will lose
+         * the track of the latter part of the linked list.
+         * */
         return head;
     }
 
-    public static int search(Node head, int x){
+    public static int search(Node head, int x) {
         int pos = 1;
         Node curr = head;
-        while(curr != null){
-            if(curr.data == x){
+        while (curr != null) {
+            if (curr.data == x) {
                 return pos;
-            }else{
+            } else {
                 pos++;
                 curr = curr.next;
             }
@@ -113,11 +115,11 @@ public class SingleLinkedList {
         return -1;
     }
 
-    public static Node reverse(Node head){
+    public static Node reverse(Node head) {
         Node curr = head;
         Node prev = null;
 
-        while(curr != null){
+        while (curr != null) {
             Node temp = curr.next;
             curr.next = prev;
             prev = curr;
@@ -145,7 +147,7 @@ public class SingleLinkedList {
         if (curr == null) {
             return prev;
         }
-        
+
         Node nxt = curr.next;
         curr.next = prev;
         return reverseLinkedListSecondApproach(nxt, curr);
@@ -154,7 +156,7 @@ public class SingleLinkedList {
     public static Node convertListToLinkedList(List<Integer> aList) {
         Node head = new Node(aList.get(0));
 
-        for (int i = 1; i < aList.size() ; i++) {
+        for (int i = 1; i < aList.size(); i++) {
             insertAtEnd(head, aList.get(i));
         }
 
@@ -169,6 +171,8 @@ public class SingleLinkedList {
         head.next = temp1;
         temp1.next = temp2;
         temp2.next = temp3;
+        Node n = reverseLinkedList(head);
+        printLinkedList(n);
 //        Node newHead = insertAtBeginning(head,40);
 //        printLinkedList(newHead);
 //        Node endHead = insertAtEnd(newHead,60);
@@ -183,8 +187,52 @@ public class SingleLinkedList {
 //        Node revHead = reverseLinkedListUsingRecursion(head);
 //        printLinkedList(revHead);
 
-        Node rev2head = reverseLinkedListSecondApproach(head, null);
-        printLinkedList(rev2head);
+//        Node rev2head = reverseLinkedListSecondApproach(head, null);
+//        printLinkedList(rev2head);
+//        Node j = deleteAnElement(head, 30);
+//        printLinkedList(j);
+    }
+
+    public static Node deleteAnElement(Node head, int key) {
+        // Store head node
+        Node temp = head, prev = null;
+
+        // If head node itself holds the key to be deleted
+        if (temp != null && temp.data == key) {
+            head = temp.next; // Changed head
+            return head;
+        }
+
+        // Search for the key to be deleted, keep track of
+        // the previous node as we need to change temp.next
+        while (temp != null && temp.data != key) {
+            prev = temp;
+            temp = temp.next;
+        }
+
+        // If key was not present in linked list
+        if (temp == null)
+            return null;
+
+        // Unlink the node from linked list
+        prev.next = temp.next;
+        return head;
+    }
+
+
+    public static Node reverseLinkedList(Node head) {
+
+        Node curr = head;
+        Node prev = null;
+
+        while (curr != null) {
+            Node temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+
+        }
+        return prev;
     }
 
 }
