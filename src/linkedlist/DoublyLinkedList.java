@@ -59,7 +59,7 @@ public class DoublyLinkedList {
         }
 
         // If element needs to be inserted at the end of the doubly linked list
-        if(curr.next == null){
+        if (curr.next == null) {
             curr.next = nNode;
             nNode.prev = curr;
             return head;
@@ -73,13 +73,13 @@ public class DoublyLinkedList {
 
     }
 
-    public static Node insertAtEnd(Node head,int data){
+    public static Node insertAtEnd(Node head, int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             return newNode;
         }
         Node curr = head;
-        while(curr.next != null){
+        while (curr.next != null) {
             curr = curr.next;
         }
         curr.next = newNode;
@@ -87,13 +87,46 @@ public class DoublyLinkedList {
         return head;
     }
 
-    public static void printList(Node head){
+    public static void printList(Node head) {
         Node curr = head;
-        while(curr != null){
+        while (curr != null) {
             System.out.print(curr.data + "->");
             curr = curr.next;
         }
         System.out.println("");
+    }
+
+    public static Node deleteNodeAtPosition(Node head, int x) {
+        Node curr = head;
+        if (head == null) {
+            return null;
+        }
+
+        if (x == 1) {
+            head = head.next;
+            return head;
+        }
+
+        int pos = 1;
+        Node prevNode = null;
+        while (pos < x && curr != null) {
+            prevNode = curr;
+            pos++;
+            curr = curr.next;
+        }
+        if (curr.next == null) {
+            prevNode.next = null;
+            return head;
+        }
+
+        prevNode.next = curr.next;
+        curr.next.prev = prevNode;
+        return head;
+    }
+
+    public static Node reverseDoublyLinkedList(Node head) {
+        // TODO: Implement method to reverse doubly linked list.
+        return head;
     }
 
     public static void main(String[] args) {
@@ -112,7 +145,8 @@ public class DoublyLinkedList {
 
         //head = insertAtBeginning(head, 40);
         //head = insertAtEnd(head , 50);
-        head = insertAtPos(head, 25, 2);
-        printList(head);
+        // head = insertAtPos(head, 25, 2);
+        Node h = deleteNodeAtPosition(head, 1);
+        printList(h);
     }
 }
