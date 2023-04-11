@@ -5,7 +5,7 @@ public class PrintSubset {
 
     public static void main(String[] args) {
         PrintSubset ps = new PrintSubset();
-        String input = "aab";
+        String input = "gfg";
         String output = "";
         ps.printAllSubset(input, output);
     }

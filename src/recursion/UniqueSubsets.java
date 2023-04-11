@@ -17,48 +17,30 @@ public class UniqueSubsets {
      * Unique Susbsets in Lexicographical order = (),(1),(1,2),(1,2,2),(2),(2,2)
      */
 
-    ArrayList<ArrayList<Integer>> outputList;
-
-    public static void main(String[] args) {
-        List<Integer> input = new ArrayList<>(Arrays.asList(2,1,2));
-        int idx = 0;
-        List<List<Integer>> subset = new ArrayList<>();
-        // solve(subset, input, new ArrayList<>(), idx);
-        solve(subset, input, new ArrayList<Integer>());
-        System.out.println(subset);
-
-    }
-
-    private static void solve(List<List<Integer>> subset, List<Integer> input, ArrayList<Integer> output) {
-        if (input.size() == 0) {
-            subset.add(output);
-            return;
-        }
-        int temp = input.get(0);
-        input.remove(0);
-
-        // exclude
-        solve(subset, new ArrayList<>(input), new ArrayList<>(output));
-
-        // include
-        output.add(temp);
-        solve(subset, new ArrayList<>(input), new ArrayList<>(output));
-
-
-    }
-
-    private static void solve(List<List<Integer>> subset, List<Integer> input, List<Integer> output, int idx) {
-        if (idx == input.size()) {
-            subset.add(output);
-            return;
+    public static void findSubsets(int ind, int[] nums, List<Integer> ds, List<List<Integer>> ansList) {
+        ansList.add(new ArrayList<>(ds));
+        for(int i = ind;i<nums.length;i++) {
+            if(i!=ind && nums[i] == nums[i-1]) continue;
+            ds.add(nums[i]);
+            findSubsets(i+1, nums, ds, ansList);
+            ds.remove(ds.size() - 1);
         }
 
-        // exclude
-        solve(subset, input, new ArrayList<>(output), idx + 1);
-
-        // include
-        output.add(input.get(idx));
-        solve(subset, input, new ArrayList<>(output), idx + 1);
     }
+    public static List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ansList = new ArrayList<>();
+        findSubsets(0, nums, new ArrayList<>(), ansList);
+        return ansList;
+    }
+
+    public static void main(String args[]) {
+        int nums[]={1,2,2};
+
+        List < List<Integer>> ans = subsetsWithDup(nums);
+        System.out.println(ans);
+
+    }
+
 
 }
