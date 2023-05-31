@@ -51,8 +51,8 @@ public class ThreeSumProblem {
                        // Avoids considering duplicate elements.
                        // only moves low and high pointer till the point
                        // where the value equals to the adjacent element.
-                       while (low < hi && arr[low] != arr[low+1]) low++;
-                       while(low < hi && arr[hi] != arr[hi-1]) hi--;
+                       while (low < hi && arr[low] == arr[low+1]) low++;
+                       while(low < hi && arr[hi] == arr[hi-1]) hi--;
 
                        low++;
                        hi--;
