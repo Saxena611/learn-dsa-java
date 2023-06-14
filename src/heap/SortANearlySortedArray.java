@@ -30,7 +30,7 @@ public class SortANearlySortedArray {
             pq.add(arr[j]);
         }
 
-        Iterator itr = pq.iterator();
+        Iterator<Integer> itr = pq.iterator();
         while (itr.hasNext()) {  // adding remaining elements from heap to array.
             arr[index++] = pq.peek();
             pq.poll();
