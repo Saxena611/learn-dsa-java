@@ -52,6 +52,9 @@ public class TreeConcept {
         Node n4 = new Node(5);
         n1.left = n3;
         n1.right = n4;
+//        Un-comment to unbalance the tree.
+//        Node n5 = new Node(6);
+//        n3.left = n5;
 
         System.out.println("Executing for pre-order traversal...");
         preOrderTraversal(root);
@@ -64,6 +67,12 @@ public class TreeConcept {
 
         System.out.println("Executing level wise traversal...");
         levelOrderTraversal(root);
+
+        System.out.println("Calculating height of binary tree");
+        System.out.println(maxHeightOfBinaryTree(root));
+
+        System.out.println("Peforming isBalanced tree check");
+        System.out.println(isBalancedTree(root));
     }
 
 
@@ -124,4 +133,41 @@ public class TreeConcept {
 
         System.out.println(levelWise);
     }
+
+    public static int maxHeightOfBinaryTree(Node root) {
+        if (root ==  null) {
+            return 0;
+        }
+
+        int leftHeight = maxHeightOfBinaryTree(root.left);
+        int rightHeight = maxHeightOfBinaryTree(root.right);
+
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    public static boolean isBalancedTree(Node root) {
+        return checkForBalancedBinaryTree(root) != -1;
+    }
+
+    public static int checkForBalancedBinaryTree(Node root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = checkForBalancedBinaryTree(root.left);
+        int rightHeight = checkForBalancedBinaryTree(root.right);
+
+        if (leftHeight == -1 || rightHeight == -1) {
+            return -1;
+        }
+
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+        return 1 + Math.max(leftHeight, rightHeight);
+
+    }
+
+
 }
