@@ -23,6 +23,7 @@ public class LongestConsecutiveSubsequence {
 
         Arrays.sort(nums);
 
+        // Kaden's Algorithm.
         int mx = 1;
         int res = 1;
         int curr = nums[0];
