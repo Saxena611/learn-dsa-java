@@ -30,7 +30,7 @@ public class KthLargestElement {
             pq.add(arr[i]);
 
             if (pq.size() > k) {
-                pq.poll();
+                pq.poll(); // reduces complexity to O nlogk
             }
 
         }

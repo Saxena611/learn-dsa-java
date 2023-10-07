@@ -1,5 +1,8 @@
 package recursion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrintSubset {
 
 
@@ -7,7 +10,12 @@ public class PrintSubset {
         PrintSubset ps = new PrintSubset();
         String input = "gfg";
         String output = "";
-        ps.printAllSubset(input, output);
+
+        List<String> outputList = new ArrayList<>();
+        ps.solve(input, output,  outputList);
+        System.out.println(outputList);
+        // ps.printAllSubset(input, output);
+
     }
 
     private void printAllSubset(String input, String output) {
@@ -30,6 +38,23 @@ public class PrintSubset {
         printAllSubset(input, output2); // inclusive operation
 
         return;
+    }
+
+    public void solve(String input, String output, List<String> outputList) {
+        if (input.isEmpty()) {
+            outputList.add(output);
+            return;
+        }
+
+        String out1 = output;
+        String out2 = output;
+
+        out1 += input.charAt(0);
+        StringBuilder sb = new StringBuilder(input);
+        sb.deleteCharAt(0);
+        input = sb.toString();
+        solve(input, out1,  outputList);
+        solve(input, out2,  outputList);
 
     }
 }

@@ -6,9 +6,9 @@ public class TreeConcept {
 
     static class Node {
 
-        private Node left;
-        private Node right;
-        private int data;
+        public Node left;
+        public Node right;
+        public int data;
 
 
         public Node(int data) {
@@ -150,26 +150,120 @@ public class TreeConcept {
     }
 
     public static int checkForBalancedBinaryTree(Node root) {
-
         if (root == null) {
             return 0;
         }
-
         int leftHeight = checkForBalancedBinaryTree(root.left);
         int rightHeight = checkForBalancedBinaryTree(root.right);
-
         if (leftHeight == -1 || rightHeight == -1) {
             return -1;
         }
-
         if (Math.abs(leftHeight - rightHeight) > 1) {
             return -1;
         }
         return 1 + Math.max(leftHeight, rightHeight);
-
     }
 
-    
+    public static int diameterOfBinaryTree(Node root, int maxHeight) {
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = diameterOfBinaryTree(root.left, maxHeight);
+        int rightHeight = diameterOfBinaryTree(root.right, maxHeight);
+        maxHeight = Math.max(maxHeight, leftHeight+rightHeight); // store the max height as diameter
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
 
+    public static List<List<Integer>> zigzagTraversal(Node root) {
+        // Problem statement is based out of level order traversal
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        List<List<Integer>> levelOrderList = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        boolean flag = true;
+        while (!queue.isEmpty()) {
+            int level = queue.size();
+            List<Integer> levelList = new ArrayList<>();
+            while (level > 0) {
+                Node current = queue.poll();
+                if (current.left != null) {
+                    queue.offer(current.left);
+                }
 
+                if (current.right != null) {
+                    queue.offer(current.right);
+                }
+
+                if (flag) {
+                    levelList.add(current.data);
+                } else {
+                    levelList.add(0, current.data);
+                }
+            }
+            levelOrderList.add(levelList);
+        }
+        return levelOrderList;
+    }
+
+    public void boundaryLevelTraversal(Node root) {
+        List<Integer> boundaryLevelList = new ArrayList<>();
+        if (isLeaf(root)) {
+            boundaryLevelList.add(root.data);
+            return;
+        }
+        addLeftBoundary(root, boundaryLevelList);
+        addLeaf(root, boundaryLevelList);
+        addRightBoundary(root, boundaryLevelList);
+    }
+
+    public void addLeftBoundary(Node root, List<Integer> boundaryList) {
+        Node curr = root.left;
+        while (curr != null) {
+            if (!isLeaf(curr)) {
+                boundaryList.add(curr.data);
+                curr = curr.left;
+            } else {
+                curr = curr.right;
+            }
+        }
+    }
+
+    public void addLeaf(Node root, List<Integer> boundaryList) {
+        // simple pre-order traversal
+        if (isLeaf(root)) {
+            boundaryList.add(root.data);
+            return;
+        }
+        if (root.left != null) {
+            addLeaf(root.left, boundaryList);
+        }
+
+        if (root.right != null) {
+            addLeaf(root.right, boundaryList);
+        }
+    }
+
+    public void addRightBoundary(Node root, List<Integer> boundaryLevelList) {
+        // we simply move towards the right and add in reverse order to the boundary level list
+        Node curr = root.right;
+
+        while (curr != null) {
+            if (!isLeaf(root)) {
+                boundaryLevelList.add(0, root.data);
+            } else if (curr.right != null) {
+                curr = curr.right;
+            } else {
+                curr = curr.left;
+            }
+        }
+    }
+
+    public boolean isLeaf(Node root) {
+        if (root.right == null || root.left == null) {
+            return true;
+        }
+        return false;
+    }
 }
